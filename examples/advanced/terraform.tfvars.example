@@ -1,0 +1,68 @@
+# =============================================================================
+# Example terraform.tfvars for Advanced Network Firewall Configuration
+# =============================================================================
+
+# Basic configuration
+name_prefix = "enterprise-firewall"
+
+# Network configuration
+availability_zones = ["us-east-1a", "us-east-1b", "us-east-1c"]
+firewall_vpc_cidr = "10.200.0.0/16"
+firewall_public_subnets  = ["10.200.1.0/24", "10.200.2.0/24", "10.200.3.0/24"]
+firewall_private_subnets = ["10.200.10.0/24", "10.200.11.0/24", "10.200.12.0/24"]
+
+# Security configuration
+blocked_domains = [
+  "malware.example.com",
+  "phishing.example.com",
+  "suspicious-site.com",
+  "tor-exit-node.com",
+  "botnet-command.com",
+  "crypto-mining-pool.com",
+  "data-exfiltration.com",
+  "command-control.com"
+]
+
+# Logging configuration
+log_retention_days = 90
+enable_s3_logging = true
+enable_cloudwatch_logging = true
+s3_bucket_encryption = "AES256"
+
+# VPC endpoints
+vpc_endpoint_services = [
+  "com.amazonaws.us-east-1.logs",
+  "com.amazonaws.us-east-1.s3",
+  "com.amazonaws.us-east-1.ec2",
+  "com.amazonaws.us-east-1.ec2messages",
+  "com.amazonaws.us-east-1.ssm",
+  "com.amazonaws.us-east-1.ssmmessages",
+  "com.amazonaws.us-east-1.secretsmanager",
+  "com.amazonaws.us-east-1.kms"
+]
+
+# Firewall policy configuration
+stateful_rule_capacity = 1000
+stateless_rule_capacity = 1000
+firewall_policy_stateless_default_actions = ["aws:forward_to_sfe"]
+firewall_policy_stateless_fragment_default_actions = ["aws:forward_to_sfe"]
+
+# Transit Gateway configuration
+transit_gateway_auto_accept_shared_attachments = "disable"
+transit_gateway_default_route_table_association = "enable"
+transit_gateway_default_route_table_propagation = "enable"
+transit_gateway_dns_support = "enable"
+transit_gateway_vpn_ecmp_support = "enable"
+transit_gateway_multicast_support = "disable"
+
+# Tags
+common_tags = {
+  Environment = "production"
+  Project     = "enterprise-security"
+  Owner       = "security-team"
+  CostCenter  = "security-ops"
+  Compliance  = "sox-pci"
+  DataClassification = "confidential"
+  BackupRequired = "true"
+  MonitoringLevel = "high"
+} 

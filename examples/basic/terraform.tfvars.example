@@ -1,0 +1,38 @@
+# =============================================================================
+# Example terraform.tfvars for Basic Network Firewall Configuration
+# =============================================================================
+
+# Basic configuration
+name_prefix = "my-network-firewall"
+
+# Network configuration
+availability_zones = ["us-east-1a", "us-east-1b"]
+firewall_vpc_cidr = "10.100.0.0/16"
+firewall_public_subnets  = ["10.100.1.0/24", "10.100.2.0/24"]
+firewall_private_subnets = ["10.100.10.0/24", "10.100.11.0/24"]
+
+# Security configuration
+blocked_domains = [
+  "malware.example.com",
+  "phishing.example.com",
+  "suspicious-site.com"
+]
+
+# Logging configuration
+log_retention_days = 30
+enable_s3_logging = true
+enable_cloudwatch_logging = true
+
+# VPC endpoints
+vpc_endpoint_services = [
+  "com.amazonaws.us-east-1.logs",
+  "com.amazonaws.us-east-1.s3"
+]
+
+# Tags
+common_tags = {
+  Environment = "development"
+  Project     = "network-security"
+  Owner       = "security-team"
+  CostCenter  = "security"
+} 
