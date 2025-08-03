@@ -1,25 +1,36 @@
-# =============================================================================
-# Outputs for Transit Gateway → Network Firewall → VPC Traffic Inspection
-# =============================================================================
+# ==============================================================================
+# Output Configuration
+# ==============================================================================
 
-output "transit_gateway_id" {
-  description = "ID of the Transit Gateway"
-  value       = aws_ec2_transit_gateway.main.id
+output "network_firewall_details" {
+  description = "Comprehensive details about the Network Firewall deployment"
+  value = {
+    arn          = aws_networkfirewall_firewall.main.arn
+    endpoint_ids = try(aws_networkfirewall_firewall.main.firewall_status[0].sync_states[*].attachment[0].endpoint_id, [])
+    status       = try(aws_networkfirewall_firewall.main.firewall_status[0].status, "unknown")
+    policy_arn   = aws_networkfirewall_firewall_policy.main.arn
+    name         = aws_networkfirewall_firewall.main.name
+  }
 }
 
-output "transit_gateway_arn" {
-  description = "ARN of the Transit Gateway"
-  value       = aws_ec2_transit_gateway.main.arn
+output "vpc_details" {
+  description = "Details about the firewall VPC"
+  value = {
+    vpc_id          = aws_vpc.firewall.id
+    vpc_cidr        = aws_vpc.firewall.cidr_block
+    public_subnets  = [for subnet in aws_subnet.firewall_public : subnet.id]
+    private_subnets = [for subnet in aws_subnet.firewall_private : subnet.id]
+  }
 }
 
-output "transit_gateway_inspection_route_table_id" {
-  description = "ID of the Transit Gateway inspection route table"
-  value       = aws_ec2_transit_gateway_route_table.inspection.id
-}
-
-output "transit_gateway_private_route_table_id" {
-  description = "ID of the Transit Gateway private route table"
-  value       = aws_ec2_transit_gateway_route_table.private.id
+output "transit_gateway_details" {
+  description = "Details about the Transit Gateway configuration"
+  value = {
+    tgw_id           = aws_ec2_transit_gateway.main.id
+    tgw_arn          = aws_ec2_transit_gateway.main.arn
+    inspection_rt_id = aws_ec2_transit_gateway_route_table.inspection.id
+    private_rt_id    = aws_ec2_transit_gateway_route_table.private.id
+  }
 }
 
 output "firewall_vpc_id" {
