@@ -1,17 +1,17 @@
-# Basic AWS Network Firewall Example
+# Basic AWS Network Firewall Configuration Example
 
-This example demonstrates a basic configuration of AWS Network Firewall with Transit Gateway integration.
+This example provides a reference implementation for a basic AWS Network Firewall deployment with Transit Gateway integration.
 
-## Features Demonstrated
+## Configuration Features
 
-- Basic VPC setup with public and private subnets
-- Simple Network Firewall policy with domain filtering
-- Basic logging configuration
-- Essential tags for resource management
+- Standard VPC configuration with public and private subnet architecture
+- Network Firewall policy implementation with domain-based filtering capabilities
+- Centralized logging configuration for audit and compliance requirements
+- Resource tagging strategy for operational management
 
-## Usage
+## Implementation Instructions
 
-To run this example:
+Execute the following commands to deploy this configuration:
 
 ```bash
 terraform init
@@ -19,8 +19,8 @@ terraform plan
 terraform apply
 ```
 
-## Notes
+## Operational Considerations
 
-- This example deploys resources into your AWS account. Make sure you understand the costs involved before deploying.
-- The example uses default values for many optional parameters to show a minimal configuration.
-- Adjust the CIDR ranges and availability zones according to your requirements.
+- This configuration will provision billable AWS resources in your account. Review the AWS pricing documentation to understand associated costs before deployment.
+- The implementation utilizes default parameter values to demonstrate a minimal viable configuration suitable for development and testing environments.
+- Modify the CIDR address ranges and availability zone selections to align with your network architecture requirements.

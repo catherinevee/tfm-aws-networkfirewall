@@ -2,7 +2,7 @@
 
 A comprehensive Terraform module for deploying AWS Network Firewall with Transit Gateway for enterprise-grade traffic inspection and security.
 
-## 🚀 Features
+## Features
 
 ### Core Connectivity
 - **Transit Gateway**: Centralized networking hub with full customization options
@@ -31,14 +31,14 @@ A comprehensive Terraform module for deploying AWS Network Firewall with Transit
 - **Metric Filters**: Custom log analysis and alerting
 - **Extended Retention**: Compliance-ready log retention policies
 
-## 📋 Prerequisites
+## Prerequisites
 
 - Terraform >= 1.0
 - AWS Provider >= 5.0
 - AWS Account with appropriate permissions
 - At least 2 availability zones in your target region
 
-## 🏗️ Architecture
+## Architecture
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
@@ -68,7 +68,7 @@ A comprehensive Terraform module for deploying AWS Network Firewall with Transit
 └─────────────────────────────────────────────────────────────────┘
 ```
 
-## 📖 Usage
+## Usage
 
 ## Resource Map
 
@@ -85,14 +85,14 @@ A comprehensive Terraform module for deploying AWS Network Firewall with Transit
 | `aws_security_group` | Network access control | Ingress/egress rules, protocol filtering |
 | `aws_flow_log` | Network traffic monitoring | CloudWatch/S3 destination, retention |
 
-### Basic Example
+### Standard Configuration Example
 
 ```hcl
 module "network_firewall" {
   source = "path/to/module"
 
-  # Basic Configuration
-  name_prefix = "basic-firewall"
+  # Primary Configuration
+  name_prefix = "standard-firewall"
   availability_zones = ["us-east-1a", "us-east-1b"]
   
   # VPC Configuration
@@ -176,7 +176,7 @@ module "enterprise_network_firewall" {
 }
 ```
 
-## 📚 Input Variables
+## Input Variables
 
 ### Required Variables
 
@@ -306,7 +306,7 @@ module "enterprise_network_firewall" {
 | `flow_logs_traffic_type` | Flow logs traffic type | `string` | `"ALL"` |
 | `flow_logs_retention_days` | Flow logs retention days | `number` | `30` |
 
-## 📤 Outputs
+## Outputs
 
 | Name | Description |
 |------|-------------|
@@ -320,7 +320,7 @@ module "enterprise_network_firewall" {
 | `stateful_rule_group_arn` | Stateful Rule Group ARN |
 | `blocked_domains` | List of blocked domains |
 
-## 🔒 Security Considerations
+## Security Considerations
 
 - **Network Segmentation**: Use separate VPCs for firewall infrastructure
 - **Access Control**: Implement restrictive security groups
@@ -330,7 +330,7 @@ module "enterprise_network_firewall" {
 - **Updates**: Regularly update firewall rules and policies
 - **Backup**: Implement backup and disaster recovery procedures
 
-## 💰 Cost Optimization
+## Cost Optimization
 
 - **Log Retention**: Configure appropriate log retention periods
 - **S3 Lifecycle**: Use S3 lifecycle policies to transition data to cheaper storage
@@ -338,7 +338,7 @@ module "enterprise_network_firewall" {
 - **Multi-AZ**: Use minimum required availability zones for your use case
 - **Monitoring**: Use CloudWatch metrics to monitor costs
 
-## 🚨 Important Notes
+## Important Notes
 
 - **ASN Range**: Use private ASN range (64512-65534) for Transit Gateway
 - **Subnet Requirements**: Ensure subnets are in different availability zones
@@ -347,14 +347,14 @@ module "enterprise_network_firewall" {
 - **IPv6**: IPv6 support requires careful planning and testing
 - **Compliance**: Ensure logging and retention meet compliance requirements
 
-## 📁 Examples
+## Examples
 
 See the `examples/` directory for complete working examples:
 
-- **Basic Example**: Simple deployment with essential features
-- **Advanced Example**: Enterprise-grade deployment with all features
+- **Standard Configuration**: Essential deployment with core functionality
+- **Advanced Configuration**: Enterprise-grade deployment with comprehensive features
 
-## 🤝 Contributing
+## Contributing
 
 1. Fork the repository
 2. Create a feature branch
@@ -362,18 +362,18 @@ See the `examples/` directory for complete working examples:
 4. Add tests if applicable
 5. Submit a pull request
 
-## 📄 License
+## License
 
 This module is licensed under the MIT License. See the LICENSE file for details.
 
-## 🆘 Support
+## Support
 
 For issues and questions:
 - Create an issue in the repository
 - Check the examples directory
 - Review the documentation
 
-## 📈 Version History
+## Version History
 
 - **v2.0.0**: Enhanced with comprehensive customization options
-- **v1.0.0**: Initial release with basic functionality
+- **v1.0.0**: Initial release with core functionality
